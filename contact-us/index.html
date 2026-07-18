@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Contact — AMP Optics</title>
+  <meta name="description" content="Contact AMP Optics, LLC — optical systems consulting, San Diego, CA.">
+  <link rel="canonical" href="https://www.amp-optics.com/contact-us/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Contact — AMP Optics">
+  <meta property="og:description" content="Tell us what you're building. We'll tell you what it will take to make it real.">
+  <meta property="og:url" content="https://www.amp-optics.com/contact-us/">
+  <meta property="og:image" content="https://www.amp-optics.com/assets/hero.jpg">
+  <link rel="icon" href="/assets/favicon.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/style.css">
+</head>
+<body>
+  <header>
+    <div class="header-inner">
+      <a class="wordmark" href="/">AMP<span>&nbsp;Optics</span></a>
+      <nav>
+        <a href="/">Welcome</a>
+        <a href="/about-us/">About</a>
+        <a href="/services/">Services</a>
+        <a href="/publications/">Publications</a>
+        <a href="/contact-us/" class="active">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="page-head">
+    <div class="section-inner">
+      <h1>Contact</h1>
+      <p>Tell us about your project — a few sentences is plenty to start. You can also reach out via <a href="https://www.linkedin.com/in/adam-phenis-612ab2/" rel="noopener" style="color:#fff">LinkedIn</a>.</p>
+    </div>
+  </div>
+
+  <main class="content">
+    <form id="contact-form" novalidate>
+      <div class="field">
+        <label for="company">Company</label>
+        <input type="text" id="company" name="company" autocomplete="organization">
+      </div>
+
+      <div class="field-row">
+        <div class="field">
+          <label for="first-name">First Name <span class="req">(required)</span></label>
+          <input type="text" id="first-name" name="first_name" required autocomplete="given-name">
+        </div>
+        <div class="field">
+          <label for="last-name">Last Name <span class="req">(required)</span></label>
+          <input type="text" id="last-name" name="last_name" required autocomplete="family-name">
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="email">Email Address <span class="req">(required)</span></label>
+        <input type="email" id="email" name="email" required autocomplete="email">
+      </div>
+
+      <div class="field">
+        <label for="subject">Subject <span class="req">(required)</span></label>
+        <input type="text" id="subject" name="subject" required>
+      </div>
+
+      <div class="field">
+        <label for="message">Message <span class="req">(required)</span></label>
+        <textarea id="message" name="message" required></textarea>
+      </div>
+
+      <div class="field">
+        <label for="password">Spam check &mdash; please enter the word &lsquo;Light&rsquo; <span class="req">(required)</span></label>
+        <input type="text" id="password" name="spam_check" required autocomplete="off">
+      </div>
+
+      <button type="submit">Submit</button>
+      <p class="form-status" id="form-status" role="status"></p>
+    </form>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <span>&copy; AMP Optics, LLC &middot; San Diego, CA</span>
+      <a href="https://www.linkedin.com/in/adam-phenis-612ab2/" rel="noopener">LinkedIn</a>
+    </div>
+  </footer>
+
+  <script>
+  (function () {
+    // Form delivery via Web3Forms (https://web3forms.com — free tier).
+    // Create an access key for the business inbox and paste it below.
+    var WEB3FORMS_ACCESS_KEY = 'YOUR_ACCESS_KEY_HERE';
+
+    var form = document.getElementById('contact-form');
+    var statusEl = document.getElementById('form-status');
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      statusEl.textContent = '';
+
+      if (!form.checkValidity()) {
+        statusEl.textContent = 'Please fill in all required fields.';
+        return;
+      }
+
+      var answer = document.getElementById('password').value.trim().toLowerCase();
+      if (answer !== 'light') {
+        statusEl.textContent = "Please enter the word 'Light' in the spam check field.";
+        return;
+      }
+
+      // Guard: Web3Forms accepts the placeholder key as a "test" and reports
+      // success without delivering anything. Fail loudly until the real key is set.
+      if (WEB3FORMS_ACCESS_KEY === 'YOUR_ACCESS_KEY_HERE') {
+        statusEl.textContent = 'This form is not yet configured. Please reach out on LinkedIn instead.';
+        return;
+      }
+
+      var data = {
+        access_key: WEB3FORMS_ACCESS_KEY,
+        subject: 'AMP Optics contact: ' + document.getElementById('subject').value,
+        company: document.getElementById('company').value,
+        name: document.getElementById('first-name').value + ' ' + document.getElementById('last-name').value,
+        email: document.getElementById('email').value,
+        message: document.getElementById('message').value
+      };
+
+      statusEl.textContent = 'Sending…';
+
+      fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify(data)
+      }).then(function (res) { return res.json(); }).then(function (json) {
+        if (json.success) {
+          statusEl.textContent = 'Thank you — your message has been sent.';
+          form.reset();
+        } else {
+          statusEl.textContent = 'Sorry, something went wrong. Please try again or reach out on LinkedIn.';
+        }
+      }).catch(function () {
+        statusEl.textContent = 'Sorry, something went wrong. Please try again or reach out on LinkedIn.';
+      });
+    });
+  })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "amp-optics-site",
+      "runtimeExecutable": "python",
+      "runtimeArgs": ["-m", "http.server", "8642", "--directory", "C:\\Users\\amphe\\amp-optics-site"],
+      "port": 8642
+    }
+  ]
+}
