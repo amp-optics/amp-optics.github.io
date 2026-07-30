@@ -11,8 +11,14 @@ Static replacement for the Squarespace site at https://www.amp-optics.com/ — p
 | `services/` | Services |
 | `publications/` | Publications |
 | `contact-us/` | Contact (form) |
-| `s/` | Brochure PDFs + publication files (same URLs as on Squarespace) |
-| `assets/` | Stylesheet, hero image, favicon |
+| `privacy/` | Privacy policy |
+| `s/` | Publication files (same URLs as on Squarespace) |
+| `assets/` | Stylesheet, logo, hero image, favicon |
+
+The two brochure PDFs were removed: the back brochure carried a Contact Us block with an
+email address and phone number that the site deliberately omits. Originals are kept at
+`C:\Users\amphe\amp-optics-brochures-backup\`. To re-add a brochure, drop a contact-free
+PDF into `s/` and restore the download line at the end of `services/index.html`.
 
 URL paths match the old Squarespace site exactly, so existing links and search results keep working.
 
@@ -32,9 +38,12 @@ The "enter the word 'Light'" spam question is enforced in the page's JavaScript 
 
 ## Deploying (GitHub Pages)
 
-1. Create a repo (e.g. `amp-optics-site`) on GitHub and push this folder to it.
+Repo: https://github.com/amp-optics/Website
+
+1. **The repo must be public** for GitHub Pages on a free account. Pages on a private repo
+   requires a paid GitHub plan.
 2. Repo → Settings → Pages → Source: "Deploy from a branch", branch `main`, folder `/ (root)`.
-3. The site appears at `https://<username>.github.io/amp-optics-site/` — verify everything there first.
+3. The site appears at `https://amp-optics.github.io/Website/` — verify everything there first.
 4. Repo → Settings → Pages → Custom domain: enter `www.amp-optics.com`, and check "Enforce HTTPS" once it validates.
 
 A `CNAME` file with `www.amp-optics.com` is included so the custom domain persists across pushes.
@@ -45,7 +54,7 @@ A `CNAME` file with `www.amp-optics.com` is included so the custom domain persis
 
 | Record | Current (Squarespace) | New (GitHub Pages) |
 |---|---|---|
-| `www` CNAME | `ext-cust.squarespace.com` | `<username>.github.io` |
+| `www` CNAME | `ext-cust.squarespace.com` | `amp-optics.github.io` |
 | apex `@` A ×4 | 198.185.159.144/145, 198.49.23.144/145 | 185.199.108.153, 185.199.109.153, 185.199.110.153, 185.199.111.153 |
 
 TTL is 30 minutes, so the switch completes quickly. The Squarespace site keeps serving until DNS flips — zero downtime.
