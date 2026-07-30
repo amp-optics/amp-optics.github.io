@@ -157,6 +157,9 @@
         name: document.getElementById('first-name').value + ' ' + document.getElementById('last-name').value,
         email: document.getElementById('email').value,
         message: document.getElementById('message').value,
+        // Web3Forms defaults reply-to to `email`; set it explicitly so
+        // hitting Reply on a notification always reaches the sender.
+        replyto: document.getElementById('email').value,
         botcheck: document.getElementById('botcheck').checked
       };
 
