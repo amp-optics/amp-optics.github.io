@@ -101,6 +101,10 @@
         <input type="text" id="password" name="spam_check" required autocomplete="off">
       </div>
 
+      <!-- Honeypot: hidden from people, tempting to naive bots. Web3Forms
+           rejects the submission server-side if this arrives checked. -->
+      <input type="checkbox" name="botcheck" id="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true" style="display:none">
+
       <button type="submit">Submit</button>
       <p class="form-status" id="form-status" role="status"></p>
     </form>
@@ -116,8 +120,10 @@
   <script>
   (function () {
     // Form delivery via Web3Forms (https://web3forms.com — free tier).
-    // Create an access key for the business inbox and paste it below.
-    var WEB3FORMS_ACCESS_KEY = 'YOUR_ACCESS_KEY_HERE';
+    // Submissions go to the mailbox this key is registered to. The key is
+    // public by design: it ships in this script and can only send mail to
+    // that inbox. Manage it at https://app.web3forms.com.
+    var WEB3FORMS_ACCESS_KEY = '0ebe4323-f9dd-4339-a13f-cf706d2d4920';
 
     var form = document.getElementById('contact-form');
     var statusEl = document.getElementById('form-status');
@@ -150,7 +156,8 @@
         company: document.getElementById('company').value,
         name: document.getElementById('first-name').value + ' ' + document.getElementById('last-name').value,
         email: document.getElementById('email').value,
-        message: document.getElementById('message').value
+        message: document.getElementById('message').value,
+        botcheck: document.getElementById('botcheck').checked
       };
 
       statusEl.textContent = 'Sending…';
