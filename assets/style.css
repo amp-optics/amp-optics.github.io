@@ -187,6 +187,16 @@ section h2 {
   padding: 26px 24px;
 }
 
+/* Full-bleed image at the top of a capability card. Negative margins pull it
+   out to the card edges, past the 26px/24px padding. */
+.card img {
+  display: block;
+  width: calc(100% + 48px);
+  height: auto;
+  margin: -26px -24px 18px;
+  border-radius: 4px 4px 0 0;
+}
+
 .card h3 { font-size: 19px; font-weight: 600; margin-bottom: 10px; }
 
 .card p { font-size: 15.5px; color: var(--body); }
@@ -340,6 +350,16 @@ main.content li { margin-bottom: 9px; }
 
 main.content a { color: var(--accent); text-underline-offset: 3px; }
 main.content a:hover { color: var(--accent-dark); }
+
+.wide-figure { margin: 32px 0; }
+
+.wide-figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+}
 
 blockquote {
   margin: 34px 0;
