@@ -355,7 +355,7 @@ main.content a:hover { color: var(--accent-dark); }
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
   gap: 20px;
-  margin-top: 28px;
+  margin-top: 20px;
 }
 
 .work-grid img {
