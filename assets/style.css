@@ -245,6 +245,44 @@ section h2 {
 
 .page-head .section-inner { max-width: 820px; }
 
+/* Publications header: antique optics texts behind the heading.
+   Gradient is weighted darker on the left, where the text sits, so the
+   spines stay visible on the right without hurting contrast. */
+.pub-head {
+  background-color: var(--ink);
+  background-image:
+    linear-gradient(90deg, rgba(13, 27, 38, 0.93) 0%, rgba(13, 27, 38, 0.86) 40%, rgba(13, 27, 38, 0.66) 100%),
+    url('publications-header.jpg');
+  background-size: cover;
+  background-position: center 60%;
+  background-repeat: no-repeat;
+}
+
+@media (max-width: 700px) {
+  /* Narrow screens crop the image hard; darken further so text still reads. */
+  .pub-head {
+    background-image:
+      linear-gradient(rgba(13, 27, 38, 0.90), rgba(13, 27, 38, 0.90)),
+      url('publications-header.jpg');
+  }
+}
+
+.head-credit {
+  margin-top: 14px;
+  font-size: 13px;
+  letter-spacing: 0.3px;
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.head-credit a {
+  color: rgba(255, 255, 255, 0.85);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  text-decoration-color: rgba(255, 255, 255, 0.4);
+}
+
+.head-credit a:hover { color: #fff; text-decoration-color: #fff; }
+
 .contact-head .section-inner {
   max-width: 1000px;
   display: flex;
