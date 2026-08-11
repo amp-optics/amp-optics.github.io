@@ -254,7 +254,9 @@ section h2 {
     linear-gradient(90deg, rgba(13, 27, 38, 0.93) 0%, rgba(13, 27, 38, 0.86) 40%, rgba(13, 27, 38, 0.66) 100%),
     url('publications-header.jpg');
   background-size: cover;
-  background-position: center 60%;
+  /* Sit high in the frame so the tops of the books are visible rather than
+     cropped mid-spine. Measured contrast stays above WCAG AA here. */
+  background-position: center 12%;
   background-repeat: no-repeat;
 }
 
