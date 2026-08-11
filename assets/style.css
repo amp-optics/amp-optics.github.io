@@ -351,6 +351,21 @@ main.content li { margin-bottom: 9px; }
 main.content a { color: var(--accent); text-underline-offset: 3px; }
 main.content a:hover { color: var(--accent-dark); }
 
+.work-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+  gap: 20px;
+  margin-top: 28px;
+}
+
+.work-grid img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+}
+
 .wide-figure { margin: 32px 0; }
 
 .wide-figure img {
